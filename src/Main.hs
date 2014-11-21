@@ -1,11 +1,11 @@
 -- | Main entry point to the application.
 module Main where
+import Funcs
 
--- last [x] = x
--- last xs = head drop length xs xs
 
 -- | The main entry point.
 main :: IO ()
 main = do
-    putStrLn "Welcome to FP Haskell Center!"
-    putStrLn "Have a good day!"
+    print $ halve [1, 2, 3, 4]
+    print $ safetail [2, 3, 5]
+    print $ safetail []
