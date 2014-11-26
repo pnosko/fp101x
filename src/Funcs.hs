@@ -3,6 +3,12 @@ module Funcs where
 half :: Int -> Int
 half = (`div` 2)
 
+isOdd :: Int -> Bool
+isOdd x = mod x 2 == 0
+
+double :: Int -> Int
+double = (*2)
+
 halve :: Show a => [a] -> ([a], [a])
 halve = halveSplit
 

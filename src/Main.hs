@@ -4,14 +4,13 @@ module Main where
 -- import Funcs
 -- import ListComp
 -- import RecurseLab
-import HOFuncs
+-- import HOFuncs
+import Church
 
 -- | The main entry point.
 main :: IO ()
 main = do
-    print "HOFuncs"
-    let nums = [1..10]
-        isOdd = (mod 2 == 0)
-        double = (*2)
-    print $ mapFilter double isOdd nums
-    print $ [double x | x <- nums, isOdd x]
+    print "Church"
+    let c1 = two
+        c2 = one
+    print $ church2int (add c1 c2)
