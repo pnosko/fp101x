@@ -1,19 +1,27 @@
 module Funcs where
-    
+
 half :: Int -> Int
 half = (`div` 2)
 
 halve :: Show a => [a] -> ([a], [a])
 halve = halveSplit
 
-halveSplit = \as -> splitAt (half (length as)) as
+halveSplit :: Show a => [a] -> ([a], [a])
+halveSplit as = splitAt (half (length as)) as
 
-halveNaive = \as -> (take  (half (length as)) as, drop (half (length as)) as)
+halveNaive :: Show a => [a] -> ([a], [a])
+halveNaive as = (take  (half (length as)) as, drop (half (length as)) as)
 
-safetail :: [a] -> [a]
-safetail = safetailce
+safetail :: Show a => [a] -> [a]  -- unfortunately Show is retarded
+safetail = safetailge
 
-safetailce = \as -> if null as then [] else tail as
+safetailce :: Show a => [a] -> [a]
+safetailce as = if null as then [] else tail as
 
+safetailge :: Show a => [a] -> [a]
+safetailge as | null as = ([] :: [a])
+              | otherwise = tail as
+
+safetailpm :: Show a => [a] -> [a]
 safetailpm [] = []
-safetailpm (x:xs) = xs
+safetailpm (_:xs) = xs
