@@ -6,16 +6,13 @@ module Main where
 -- import RecurseLab
 -- import HOFuncs
 import Church
+-- import HOFuncsLab
+-- import Parsers
+import InteractiveLab
+import Data.Char
 
 -- | The main entry point.
 main :: IO ()
 main = do
-    print "Church"
-    let c1 = one
-        c2 = two
-        c3 = \s z -> s (two s z)
-    print $ church2int (add c1 c2)
-    print $ church2int c3
-    print $ church2int (mul c3 c2)
-    print $ church2int (mul c2 c2)
-    print $ church2int (exp' c3 c2)
+    print "Interactive"
+    print $ nat2int (mul two two)

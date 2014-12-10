@@ -3,10 +3,16 @@ module Funcs where
 half :: Int -> Int
 half = (`div` 2)
 
-isOdd :: Int -> Bool
+isOdd :: Integer -> Bool
 isOdd x = mod x 2 == 0
 
-double :: Int -> Int
+isEven :: Integer -> Bool
+isEven = not . isOdd
+
+square :: Integer -> Integer
+square = (^2)
+
+double :: Integer -> Integer
 double = (*2)
 
 halve :: Show a => [a] -> ([a], [a])

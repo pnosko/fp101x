@@ -1,20 +1,26 @@
 {-# LANGUAGE ExistentialQuantification #-}
 module Church where
 
---church2int :: CNat a -> Int
-church2int x = x (+1) 0
+data Nat = Zero | Succ Nat
+           deriving Show
 
-zero _ z = z
-one s z = s z
-two s z = s (one s z)
+zero = Zero
+one = Succ Zero
+two = Succ one
 
-type CNat a = (a -> a) -> a -> a
+nat2int :: Nat -> Int
+nat2int Zero     = 0
+nat2int (Succ n) = 1 + nat2int n
 
-add :: CNat a -> CNat a -> CNat a
-add x y = \s z -> x s (y s z)
+int2nat :: Int -> Nat
+int2nat 0 = Zero
+int2nat n = Succ (int2nat (n - 1))
 
-mul :: CNat a -> CNat a -> CNat a
-mul x y = x . y -- \s z -> x (y s) z
+add :: Nat -> Nat -> Nat
+add Zero n     = n
+add (Succ m) n = Succ (add m n)
 
-exp' :: CNat a -> CNat a -> CNat a
-exp' x y = -- KOKOT DO PICE KURVA!!! \s z -> y (mul x s) (one s z)
+mul :: Nat -> Nat -> Nat
+mul Zero _ = Zero
+mul _ Zero = Zero
+mul (Succ m) n = add n (mul m n)
